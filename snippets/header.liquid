@@ -1,0 +1,40 @@
+
+<!-- Start Bootstrap -->
+<header>
+    <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+        <h5 class="my-0 mr-md-auto font-weight-norma "><a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{{ routes.root_url }}">{{ shop.name }}</a></h5>
+        <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+            {% for link in linklists.main-menu.links %}
+            {% assign child_list_handle = link.title | handleize %}
+            {% if linklists[child_list_handle].links != blank %}
+            <a href="{{ link.url }}" class="me-3 py-2 link-body-emphasis text-decoration-none">{{
+                link.title }}</a>
+            [{% for childlink in linklists[child_list_handle].links %}
+            <a href="{{ childlink.url }}" class="me-3 py-2 link-body-emphasis text-decoration-none">{{
+                childlink.title | escape }}</a>
+            {% endfor %}]
+            {% else %}
+            <a href="{{ link.url }}" class="me-3 py-2 link-body-emphasis text-decoration-none">{{
+                link.title }}</a>
+            {% endif %}
+            {% endfor %}
+            <a href="/cart" class="me-3 py-2 link-body-emphasis text-decoration-none">Cart</a>
+            {% if shop.customer_accounts_enabled %}
+            {% if customer %}
+            <a href="/account" class="me-3 py-2 link-body-emphasis text-decoration-none">account</a>
+            {{ 'log out' | customer_logout_link }}
+            {% else %}
+            <a href="/account/login" class="me-3 py-2 link-body-emphasis text-decoration-none">Login</a>
+            <a class="btn btn-outline-primary" href="{{ routes.account_register_url }}" class="me-3 py-2 link-body-emphasis text-decoration-none">Sign Up</a>
+            {% endif %}
+            {% endif %}
+        </nav>
+    </div>
+
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+        <h1 class="display-4 fw-normal text-body-emphasis">Pricing</h1>
+        <p class="fs-5 text-body-secondary">Quickly build an effective pricing table for your potential customers with
+            this Bootstrap example. It’s built with default Bootstrap components and utilities with little
+            customization.</p>
+    </div>
+</header>
