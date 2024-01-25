@@ -1,6 +1,6 @@
 <!-- /templates/customers/login.liquid -->
-
-<h2>Login</h2>
+<div class="container">
+    <h2>Login</h2>
 {% form 'customer_login' %}
 
 {{ form.errors | default_errors }}
@@ -26,3 +26,5 @@
 <input type="submit" value="Submit" />
 
 {% endform %}
+
+</div>
